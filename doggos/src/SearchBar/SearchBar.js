@@ -5,7 +5,7 @@ import DogList from "../Dogs/DogList";
 
 export default function SearchBar() {
   const [dropList, setDropList] = useState([]);
-  const [dog, setDog] = useState("");
+  //   const [dog, setDog] = useState("");
 
   useEffect(() => {
     axios
@@ -18,6 +18,10 @@ export default function SearchBar() {
       });
   }, []);
 
+  function openSelection() {
+    return;
+  }
+
   return (
     <div className="dogs_searchBar">
       <div className="dogs_dropdown">
@@ -28,17 +32,15 @@ export default function SearchBar() {
           {dropList.map((dog) => {
             let breed = dog[0];
             let subs = dog[1];
-            console.log(subs);
-
-            let text = "";
 
             if (subs.length > 0) {
-              text = breed + " >";
+              return subs.map((sub) => {
+                const full = breed + " " + sub;
+                return <option value={full}>{full}</option>;
+              });
             } else {
-              text = breed;
+              return <option value={breed}>{breed}</option>;
             }
-
-            return <option value={breed}>{text}</option>;
           })}
         </select>
       </div>
