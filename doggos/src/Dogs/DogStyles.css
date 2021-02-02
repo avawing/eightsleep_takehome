@@ -7,8 +7,8 @@
 }
 
 .dog_card_outer {
-  height: 282px;
-  width: 282px;
+  max-height: 282px;
+  max-width: 282px;
   border: 1px solid black;
   margin: 5px;
   display: flex;
