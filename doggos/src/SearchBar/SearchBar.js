@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./SearchBar.css";
 import DogList from "../Dogs/DogList";
@@ -6,6 +7,7 @@ import DogList from "../Dogs/DogList";
 function SearchBar() {
   const [dropList, setDropList] = useState([]);
   const [terms, setTerms] = useState("");
+  let history = useHistory();
 
   const alphas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -29,7 +31,16 @@ function SearchBar() {
           <select
             id="dogs"
             onChange={(e) => {
-              return setTerms(e.target.value);
+              setTerms(e.target.value);
+              let dog = e.target.value.split(" ")[0];
+              let sub = e.target.value.split(" ")[1];
+
+              if (sub) {
+                history.push(`${dog}/${sub}`);
+              } else {
+                history.push("/");
+                history.push(e.target.value);
+              }
             }}
           >
             <option value="null">Dog List: </option>
@@ -49,7 +60,14 @@ function SearchBar() {
         </div>
         <div className="dogs_alphabet" />
         <label for="letter">Browse By Alphabet: </label>
-        <select id="letter" onChange={(e) => setTerms(e.target.value)}>
+        <select
+          id="letter"
+          onChange={(e) => {
+            setTerms(e.target.value);
+            history.push("/");
+            history.push(e.target.value);
+          }}
+        >
           {alphas.split("").map((letter) => (
             <option value={letter}>{letter}</option>
           ))}

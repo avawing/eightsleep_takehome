@@ -5,18 +5,11 @@ import { Route } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <Route exact path="/">
-        <header className="App-header">Dog Finder</header>
-      </Route>
-      <Route path="/:{a-z}">
-        <header className="App-header">Dog Finder</header>
-      </Route>
-      <Route path="/:breed">
-        <header className="App-header">Dog Finder</header>
-      </Route>
-      <Route path="/:breed/:subbreed">
-        <header className="App-header">Dog Finder</header>
-      </Route>
+      <header className="App-header">Dog Finder</header>
+      <Route exact path="/"></Route>
+      <Route path="/:letter"></Route>
+      <Route path="/:breed"></Route>
+      <Route path="/:breed/:subbreed"></Route>
       <SearchBar />
     </div>
   );
