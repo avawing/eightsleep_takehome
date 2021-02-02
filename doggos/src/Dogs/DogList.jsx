@@ -5,6 +5,7 @@ import "./DogStyles.css";
 
 export default function DogList(props) {
   let [dogs, setDogs] = useState([]);
+  let [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     if (props.terms.length === 0) {
@@ -44,8 +45,6 @@ export default function DogList(props) {
           for (let i = 0; i < list.length; i++) {
             if (list[i] === last_index) {
               let final_num = 20 - total;
-              console.log(final_num);
-              console.log(list[i]);
 
               axios
                 .get(
@@ -86,21 +85,30 @@ export default function DogList(props) {
           console.log("error", err);
         });
     }
-  }, [props.terms]);
+  }, [props.terms, isClicked]);
 
   return (
     <>
       <div className="dog_list_container">
         {dogs.length > 0 ? (
           dogs.map((dog) => {
-            console.log(" Made It? ");
             return <DogCard key={dog} dog={dog} />;
           })
         ) : (
           <span />
         )}
       </div>
-      <button>Fetch Doggos</button>
+      <button
+        onClick={(e) => {
+          if (isClicked === true) {
+            setIsClicked(false);
+          } else {
+            setIsClicked(true);
+          }
+        }}
+      >
+        Fetch Doggos
+      </button>
     </>
   );
 }

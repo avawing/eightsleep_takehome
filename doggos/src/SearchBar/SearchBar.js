@@ -3,7 +3,7 @@ import axios from "axios";
 import "./SearchBar.css";
 import DogList from "../Dogs/DogList";
 
-export default function SearchBar() {
+function SearchBar() {
   const [dropList, setDropList] = useState([]);
   const [terms, setTerms] = useState("");
 
@@ -26,7 +26,12 @@ export default function SearchBar() {
         <div className="dogs_dropdown">
           {" "}
           <label for="dogs"> Browse By Breed: </label>
-          <select id="dogs" onChange={(e) => setTerms(e.target.value)}>
+          <select
+            id="dogs"
+            onChange={(e) => {
+              return setTerms(e.target.value);
+            }}
+          >
             <option value="null">Dog List: </option>
             {dropList.map((dog) => {
               let breed = dog[0];
@@ -54,3 +59,5 @@ export default function SearchBar() {
     </>
   );
 }
+
+export default SearchBar;
