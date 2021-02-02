@@ -5,7 +5,6 @@ import "./DogStyles.css";
 
 export default function DogList() {
   let [dogs, setDogs] = useState([]);
-  let doggos = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   useEffect(() => {
     axios
       .get(`https://dog.ceo/api/breeds/image/random/20`)
