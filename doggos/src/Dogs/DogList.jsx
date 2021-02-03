@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import DogCard from "./DogCard";
 import "./DogStyles.css";
@@ -6,9 +7,10 @@ import "./DogStyles.css";
 export default function DogList(props) {
   let [dogs, setDogs] = useState([]);
   let [isClicked, setIsClicked] = useState(false);
+  let params = useParams();
 
   useEffect(() => {
-    if (props.terms.length === 0) {
+    if (Object.values(params).length === 0) {
       axios
         .get(`https://dog.ceo/api/breeds/image/random/20`)
         .then((res) => {
@@ -17,11 +19,12 @@ export default function DogList(props) {
         .catch((err) => {
           console.log("error", err);
         });
-    } else if (props.terms.split(" ").length > 1) {
-      const dogArr = props.terms.split(" ");
+    } else if (Object.values(params).length > 1) {
       axios
         .get(
-          `https://dog.ceo/api/breed/${dogArr[0]}/${dogArr[1]}/images/random/20`
+          `https://dog.ceo/api/breed/${Object.values(params)[0]}/${
+            Object.values(params)[1]
+          }/images/random/20`
         )
         .then((res) => {
           setDogs(res.data.message);
@@ -29,13 +32,13 @@ export default function DogList(props) {
         .catch((err) => {
           console.log("error", err);
         });
-    } else if (props.terms.split("").length === 1) {
+    } else if (Object.values(params)[0].length === 1) {
       axios
         .get(`https://dog.ceo/api/breeds/list`)
         .then((res) => {
           let list = res.data.message;
           list = list.filter(
-            (word) => word.charAt(0).toUpperCase() === props.terms
+            (word) => word.charAt(0).toUpperCase() === Object.values(params)[0]
           );
           let num_dogs = Math.floor(20 / list.length);
           let total = 0;
@@ -77,7 +80,11 @@ export default function DogList(props) {
         });
     } else {
       axios
-        .get(`https://dog.ceo/api/breed/${props.terms}/images/random/20`)
+        .get(
+          `https://dog.ceo/api/breed/${
+            Object.values(params)[0]
+          }/images/random/20`
+        )
         .then((res) => {
           setDogs(res.data.message);
         })
@@ -85,7 +92,7 @@ export default function DogList(props) {
           console.log("error", err);
         });
     }
-  }, [props.terms, isClicked]);
+  }, [params, isClicked]);
 
   return (
     <>

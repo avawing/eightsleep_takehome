@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "./SearchBar.css";
 import DogList from "../Dogs/DogList";
@@ -8,10 +8,6 @@ function SearchBar() {
   const [dropList, setDropList] = useState([]);
   const [terms, setTerms] = useState("");
   let history = useHistory();
-  let params = useParams();
-
-  console.log("WOO");
-  console.log(params);
   const alphas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   useEffect(() => {
@@ -39,6 +35,7 @@ function SearchBar() {
               let sub = e.target.value.split(" ")[1];
 
               if (sub) {
+                history.push("/");
                 history.push(`${dog}/${sub}`);
               } else {
                 history.push("/");
@@ -46,7 +43,7 @@ function SearchBar() {
               }
             }}
           >
-            <option value="null">Dog List: </option>
+            <option value="/">Dog List: </option>
             {dropList.map((dog) => {
               let breed = dog[0];
               let subs = dog[1];
@@ -71,6 +68,7 @@ function SearchBar() {
             history.push(e.target.value);
           }}
         >
+          <option value="/">Letters</option>
           {alphas.split("").map((letter) => (
             <option value={letter}>{letter}</option>
           ))}

@@ -16,6 +16,9 @@ function App() {
         <Route exact path="/:letter">
           <SearchBar />
         </Route>
+        <Route exact path="/">
+          <SearchBar />
+        </Route>
       </Switch>
     </div>
   );
