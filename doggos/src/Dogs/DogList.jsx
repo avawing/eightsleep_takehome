@@ -10,8 +10,6 @@ export default function DogList() {
   let params = useParams();
   let location = useLocation();
 
-  console.log(location.pathname);
-
   useEffect(() => {
     if (location.pathname === "/favorites") {
       var favorites = JSON.parse(localStorage.getItem("favorites"));
