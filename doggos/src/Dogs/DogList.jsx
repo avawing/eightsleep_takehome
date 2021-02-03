@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import DogCard from "./DogCard";
 import "./DogStyles.css";
@@ -8,9 +8,16 @@ export default function DogList() {
   let [dogs, setDogs] = useState([]);
   let [isClicked, setIsClicked] = useState(false);
   let params = useParams();
+  let location = useLocation();
+
+  console.log(location.pathname);
 
   useEffect(() => {
-    if (Object.values(params).length === 0) {
+    if (location.pathname === "/favorites") {
+      var favorites = JSON.parse(localStorage.getItem("favorites"));
+
+      setDogs(favorites);
+    } else if (Object.values(params).length === 0) {
       axios
         .get(`https://dog.ceo/api/breeds/image/random/20`)
         .then((res) => {

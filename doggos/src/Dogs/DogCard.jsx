@@ -13,13 +13,27 @@ export default function DogCard(props) {
         if (favorites[i] === link) {
           favorites.splice(i, 1);
           localStorage.setItem("favorites", JSON.stringify(favorites));
+          setClicked(false);
           return;
         }
       }
     }
     favorites.push(link);
     localStorage.setItem("favorites", JSON.stringify(favorites));
+    setClicked(true);
     return;
+  }
+
+  function checkFavorite(dog) {
+    var favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (favorites === []) {
+      return;
+    }
+    for (let i = 0; i < favorites.length; i++) {
+      if (favorites[i] === dog) {
+        setClicked(true);
+      }
+    }
   }
 
   return (
