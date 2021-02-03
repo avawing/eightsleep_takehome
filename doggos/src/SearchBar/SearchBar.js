@@ -6,7 +6,6 @@ import DogList from "../Dogs/DogList";
 
 function SearchBar() {
   const [dropList, setDropList] = useState([]);
-  const [terms, setTerms] = useState("");
   let history = useHistory();
   const alphas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
@@ -30,7 +29,6 @@ function SearchBar() {
           <select
             id="dogs"
             onChange={(e) => {
-              setTerms(e.target.value);
               let dog = e.target.value.split(" ")[0];
               let sub = e.target.value.split(" ")[1];
 
@@ -63,7 +61,6 @@ function SearchBar() {
         <select
           id="letter"
           onChange={(e) => {
-            setTerms(e.target.value);
             history.push("/");
             history.push(e.target.value);
           }}
@@ -74,7 +71,7 @@ function SearchBar() {
           ))}
         </select>
       </div>
-      <DogList terms={terms} />
+      <DogList />
     </>
   );
 }

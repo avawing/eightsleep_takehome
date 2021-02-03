@@ -4,7 +4,7 @@ import axios from "axios";
 import DogCard from "./DogCard";
 import "./DogStyles.css";
 
-export default function DogList(props) {
+export default function DogList() {
   let [dogs, setDogs] = useState([]);
   let [isClicked, setIsClicked] = useState(false);
   let params = useParams();
