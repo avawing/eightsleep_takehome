@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
 import "./SearchBar.css";
 import DogList from "../Dogs/DogList";
@@ -8,7 +8,10 @@ function SearchBar() {
   const [dropList, setDropList] = useState([]);
   const [terms, setTerms] = useState("");
   let history = useHistory();
+  let params = useParams();
 
+  console.log("WOO");
+  console.log(params);
   const alphas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   useEffect(() => {
