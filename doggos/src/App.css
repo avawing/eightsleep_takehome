@@ -17,9 +17,9 @@
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -32,8 +32,8 @@
   background-color: transparent;
   color: white;
   font-size: calc(10px + 2vmin);
-  align-self: flex-start;
-  text-align: center;
+  margin: 1.5%;
+  cursor: pointer;
 }
 @keyframes App-logo-spin {
   from {
