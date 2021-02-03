@@ -27,7 +27,14 @@
 .App-link {
   color: #61dafb;
 }
-
+.app_home_button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: calc(10px + 2vmin);
+  align-self: flex-start;
+  text-align: center;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
